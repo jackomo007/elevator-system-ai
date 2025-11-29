@@ -36,11 +36,33 @@ namespace ElevatorSystem.ConsoleApp
 
             while (true)
             {
+                // Tell logger that the user is now typing.
+                ConsoleLogger.SetUserTyping(true);
+
+                // Optional: print a prompt without logger interference.
+                lock (typeof(Console)) // simple prompt lock to avoid rare overlaps
+                {
+                    System.Console.Write("> ");
+                }
+
                 var line = System.Console.ReadLine();
+
+                // User finished typing (or input ended) -> resume logging and flush buffer.
+                ConsoleLogger.SetUserTyping(false);
+
+                if (line is null)
+                {
+                    // EOF or input closed; exit gracefully.
+                    break;
+                }
+
                 if (string.IsNullOrWhiteSpace(line))
                     continue;
 
                 var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length == 0)
+                    continue;
+
                 if (parts[0].Equals("q", StringComparison.OrdinalIgnoreCase))
                     break;
 
@@ -55,7 +77,12 @@ namespace ElevatorSystem.ConsoleApp
                                 break;
                             }
 
-                            var floor = int.Parse(parts[1]);
+                            if (!int.TryParse(parts[1], out var floor))
+                            {
+                                logger.Warn("Invalid floor value.");
+                                break;
+                            }
+
                             var direction = parts[2].Equals("up", StringComparison.OrdinalIgnoreCase)
                                 ? Direction.Up
                                 : Direction.Down;
@@ -70,7 +97,12 @@ namespace ElevatorSystem.ConsoleApp
                                 break;
                             }
 
-                            var dest = int.Parse(parts[1]);
+                            if (!int.TryParse(parts[1], out var dest))
+                            {
+                                logger.Warn("Invalid floor value.");
+                                break;
+                            }
+
                             controller.AddDestination(dest);
                             break;
 
