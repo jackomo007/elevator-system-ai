@@ -7,12 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Logging\" />
-      <Folder Include="Services\" />
-      <Folder Include="Time\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\ElevatorSystem.Application\ElevatorSystem.Application.csproj" />
       <ProjectReference Include="..\ElevatorSystem.Domain\ElevatorSystem.Domain.csproj" />
     </ItemGroup>

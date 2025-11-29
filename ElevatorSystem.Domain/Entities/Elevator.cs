@@ -15,7 +15,7 @@ namespace ElevatorSystem.Domain.Entities
 
         public int Id { get; }
         public Floor CurrentFloor { get; private set; }
-        public ElevatorState State { get; private set; }
+        public ElevatorState State { get; set; }
 
         public IReadOnlyCollection<Floor> TargetFloors => _targetFloors.AsReadOnly();
 
