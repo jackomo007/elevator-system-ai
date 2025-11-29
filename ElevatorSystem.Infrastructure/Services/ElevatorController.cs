@@ -11,7 +11,7 @@ namespace ElevatorSystem.Infrastructure.Services
     /// <summary>
     /// Thread-safe controller that processes requests and moves the elevator.
     /// </summary>
-    public sealed class ElevatorController : IDisposable
+    public sealed class ElevatorController : IElevatorController, IDisposable
     {
         private readonly Elevator _elevator;
         private readonly IRequestQueue _requestQueue;
