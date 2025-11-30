@@ -1,0 +1,12 @@
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/bin/Debug/net8.0/ElevatorSystem.Domain.deps.json
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/bin/Debug/net8.0/ElevatorSystem.Domain.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/bin/Debug/net8.0/ElevatorSystem.Domain.pdb
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.AssemblyInfoInputs.cache
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.AssemblyInfo.cs
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.csproj.CoreCompileInputs.cache
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.sourcelink.json
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/refint/ElevatorSystem.Domain.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ElevatorSystem.Domain.pdb
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Domain/obj/Debug/net8.0/ref/ElevatorSystem.Domain.dll

@@ -1,0 +1,200 @@
+@page "/elevator"
+@rendermode InteractiveServer
+
+@using ElevatorSystem.Application.UseCases
+@using ElevatorSystem.Domain.Entities
+@using ElevatorSystem.Domain.Enums
+@using ElevatorSystem.Domain.ValueObjects
+@using ElevatorSystem.Domain.Interfaces
+
+@inject Elevator Elevator
+@inject RequestElevatorUseCase RequestUseCase
+@inject IElevatorController Controller
+@inject ILogger Logger
+
+<h3>Elevator Control Panel</h3>
+
+<div style="display:flex;gap:2rem;align-items:flex-start;">
+
+    <!-- Elevator Info -->
+    <div>
+        <p><strong>Current Floor:</strong> @Elevator.CurrentFloor.Value</p>
+        <p><strong>State:</strong> @Elevator.State.ToString()</p>
+
+        <button @onclick="Refresh">Refresh</button>
+    </div>
+
+    <!-- Buttons -->
+    <div>
+        <h4>Request Pickup</h4>
+
+        <div>
+            @for (int i = 1; i <= 10; i++)
+            {
+                var floor = i; // capturar por iteração
+
+                var upStyle = GetPickupButtonStyle(floor, Direction.Up);
+                var downStyle = GetPickupButtonStyle(floor, Direction.Down);
+
+                <button style="margin:2px;@upStyle"
+                        @onclick="() => RequestPickup(floor, Direction.Up)">
+                    @floor ↑
+                </button>
+                <button style="margin:2px;@downStyle"
+                        @onclick="() => RequestPickup(floor, Direction.Down)">
+                    @floor ↓
+                </button>
+                <br />
+            }
+        </div>
+
+        <h4>Inside Elevator — Add Destination</h4>
+        <div>
+            @for (int i = 1; i <= 10; i++)
+            {
+                var destFloor = i;
+                var destStyle = GetDestinationButtonStyle(destFloor);
+
+                <button style="margin:2px;@destStyle"
+                        @onclick="() => AddDestinationFloor(destFloor)">
+                    Go @destFloor
+                </button>
+            }
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* estilos simples só para visual */
+    .btn-current {
+        background-color: #4caf50;
+        color: white;
+        font-weight: bold;
+    }
+
+    .btn-pending {
+        background-color: #ffc107;
+        color: #000;
+    }
+</style>
+
+@code {
+    private readonly object _lock = new();
+
+    // pickup pendentes: chave "P:floor:Direction"
+    private readonly HashSet<string> _pendingPickups = new();
+    // destinos pendentes: floor
+    private readonly HashSet<int> _pendingDestinations = new();
+
+    private Task Refresh()
+    {
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        // Periodically refresh UI and update states
+        var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(500));
+
+        _ = Task.Run(async () =>
+        {
+            while (await timer.WaitForNextTickAsync())
+            {
+                UpdateServedRequests();
+                await InvokeAsync(StateHasChanged);
+            }
+        });
+
+        return Task.CompletedTask;
+    }
+
+    // === Button click handlers ===
+
+    private void RequestPickup(int floor, Direction direction)
+    {
+        lock (_lock)
+        {
+            _pendingPickups.Add(GetPickupKey(floor, direction));
+        }
+
+        RequestUseCase.Execute(floor, direction);
+    }
+
+    private void AddDestinationFloor(int floor)
+    {
+        lock (_lock)
+        {
+            _pendingDestinations.Add(floor);
+        }
+
+        Controller.AddDestination(floor);
+    }
+
+    // === Visual helpers ===
+
+    private string GetPickupKey(int floor, Direction direction)
+        => $"P:{floor}:{direction}";
+
+    private string GetPickupButtonStyle(int floor, Direction direction)
+    {
+        var isCurrent = Elevator.CurrentFloor.Value == floor;
+        var key = GetPickupKey(floor, direction);
+        bool isPending;
+
+        lock (_lock)
+        {
+            isPending = _pendingPickups.Contains(key);
+        }
+
+        if (isCurrent)
+            return "background-color:#4caf50;color:white;font-weight:bold;";
+
+        if (isPending)
+            return "background-color:#ffc107;color:#000;";
+
+        return "";
+    }
+
+    private string GetDestinationButtonStyle(int floor)
+    {
+        var isCurrent = Elevator.CurrentFloor.Value == floor;
+        bool isPending;
+
+        lock (_lock)
+        {
+            isPending = _pendingDestinations.Contains(floor);
+        }
+
+        if (isCurrent)
+            return "background-color:#4caf50;color:white;font-weight:bold;";
+
+        if (isPending)
+            return "background-color:#ffc107;color:#000;";
+
+        return "";
+    }
+
+    // === Atualizar estados com base no movimento do elevador ===
+
+    private void UpdateServedRequests()
+    {
+        var currentFloor = Elevator.CurrentFloor.Value;
+
+        // Quando porta está aberta ou voltou a Idle, assumimos
+        // que pedidos daquele andar foram atendidos
+        if (Elevator.State == ElevatorState.DoorOpen ||
+            Elevator.State == ElevatorState.Idle)
+        {
+            lock (_lock)
+            {
+                // remove pickups pendentes para esse floor
+                _pendingPickups.RemoveWhere(k => k.StartsWith($"P:{currentFloor}:"));
+
+                // remove destinos pendentes para esse floor
+                _pendingDestinations.Remove(currentFloor);
+            }
+        }
+    }
+}

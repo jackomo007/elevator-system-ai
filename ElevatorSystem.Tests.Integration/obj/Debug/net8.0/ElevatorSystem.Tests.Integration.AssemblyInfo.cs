@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElevatorSystem.Tests.Integration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ca0fbfbf8ba534a542e5695cca48918ee357987")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1875e630fae72aa85d69e3ec98d99e5332cfc97")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElevatorSystem.Tests.Integration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElevatorSystem.Tests.Integration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -71,5 +71,9 @@ namespace ElevatorSystem.Infrastructure.Logging
         public void Debug(string message) => LogInternal("DEBUG", message);
         public void Warn(string message)  => LogInternal("WARN ", message);
         public void Error(string message) => LogInternal("ERROR", message);
+        private void Write(string level, string message)
+        {
+            Console.WriteLine($"{DateTime.UtcNow:o} [{level}] {message}");
+        }
     }
 }

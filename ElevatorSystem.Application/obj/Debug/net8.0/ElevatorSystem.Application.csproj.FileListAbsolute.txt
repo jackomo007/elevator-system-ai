@@ -1,0 +1,16 @@
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/bin/Debug/net8.0/ElevatorSystem.Application.deps.json
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/bin/Debug/net8.0/ElevatorSystem.Application.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/bin/Debug/net8.0/ElevatorSystem.Application.pdb
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/bin/Debug/net8.0/ElevatorSystem.Domain.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/bin/Debug/net8.0/ElevatorSystem.Domain.pdb
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.csproj.AssemblyReference.cache
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.AssemblyInfoInputs.cache
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.AssemblyInfo.cs
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.csproj.CoreCompileInputs.cache
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.sourcelink.json
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/Elevator.373BEBE6.Up2Date
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/refint/ElevatorSystem.Application.dll
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ElevatorSystem.Application.pdb
+/Users/angelprieto/Documents/Projects/ElevatorSystem/ElevatorSystem.Application/obj/Debug/net8.0/ref/ElevatorSystem.Application.dll
